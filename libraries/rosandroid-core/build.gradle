@@ -1,0 +1,34 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+   // buildToolsVersion '26.0.2'
+
+    defaultConfig {
+        minSdkVersion 22
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
+configurations {
+    all*.exclude group: 'org.ros.rosjava_bootstrap', module: 'gradle_plugins'
+}
+
+dependencies {
+
+    compile('org.ros.rosjava_core:rosjava:0.3.5') {
+        exclude group: 'xml-apis'
+        exclude group: 'junit'
+    }
+
+    compile 'org.ros.rosjava_messages:std_msgs:0.5.11'
+    compile 'org.ros.rosjava_messages:rosgraph_msgs:1.11.2'
+    compile "org.ros.rosjava_messages:diagnostic_msgs:1.12.7"
+    compile "org.ros.rosjava_messages:sensor_msgs:1.12.7"
+
+    //noinspection GradleCompatible
+    compile "com.android.support:appcompat-v7:28.0.0"
+
+}

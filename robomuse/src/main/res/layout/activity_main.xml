@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="330dp"
+                android:background="@drawable/logo2"
+                android:gravity="center"
+                android:text="RoboMuse 4.0"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/textLarge"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:onClick="guideMe"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:background="@color/colorGrapeFruit"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/guide24dp"
+                        tools:ignore="VectorDrawableCompat"
+                        android:tint="@color/colorWhite"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:padding="2dp"
+                        android:text="Guide"
+                        android:gravity="center"
+                        android:background="@color/colorGrapeFruitDark"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/textSmall"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:onClick="teleopMe"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:background="@color/colorBitterSweet"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:tint="@color/colorWhite"
+                        app:srcCompat="@drawable/control24dp"
+                        tools:ignore="VectorDrawableCompat"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:padding="2dp"
+                        android:text="Teleop"
+                        android:gravity="center"
+                        android:background="@color/colorBitterSweetDark"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/textSmall"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:onClick="sleepMe"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:background="@color/colorFlower"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:tint="@color/colorWhite"
+                        app:srcCompat="@drawable/sleep24dp"
+                        tools:ignore="VectorDrawableCompat"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:padding="2dp"
+                        android:text="Sleep"
+                        android:gravity="center"
+                        android:background="@color/colorFlowerDark"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/textSmall"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <!--Second Row Starts -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:onClick="voiceMe"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:background="@color/colorGrass"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:tint="@color/colorWhite"
+                        app:srcCompat="@drawable/voice24dp"
+                        tools:ignore="VectorDrawableCompat"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:padding="2dp"
+                        android:text="Voice"
+                        android:gravity="center"
+                        android:background="@color/colorGrassDark"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/textSmall"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:onClick="videoMe"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:background="@color/colorBlueJeans"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:tint="@color/colorWhite"
+                        app:srcCompat="@drawable/videos24dp"
+                        tools:ignore="VectorDrawableCompat"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:padding="2dp"
+                        android:text="Videos"
+                        android:gravity="center"
+                        android:background="@color/colorBlueJeansDark"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/textSmall"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:onClick="liveMe"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:background="@color/colorLavender"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:tint="@color/colorWhite"
+                        app:srcCompat="@drawable/status24dp"
+                        tools:ignore="VectorDrawableCompat"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:padding="2dp"
+                        android:text="Live"
+                        android:gravity="center"
+                        android:background="@color/colorLavenderDark"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/textSmall"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--End Second Row -->
+
+            <!--Third Rows Starts -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <LinearLayout
+                    android:onClick="masterChooser"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:background="@color/colorMint"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:tint="@color/colorWhite"
+                        app:srcCompat="@drawable/block24dp"
+                        tools:ignore="VectorDrawableCompat"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:padding="2dp"
+                        android:text="Master"
+                        android:gravity="center"
+                        android:background="@color/colorMintDark"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/textSmall"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:onClick="contactMe"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:background="@color/colorAqua"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:tint="@color/colorWhite"
+                        app:srcCompat="@drawable/contact24dp"
+                        tools:ignore="VectorDrawableCompat"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:padding="2dp"
+                        android:text="Contact"
+                        android:gravity="center"
+                        android:background="@color/colorAquaDark"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/textSmall"
+                        />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:onClick="aboutMe"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:layout_margin="2dp"
+                    android:background="@color/colorPinkRose"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center"
+                        android:tint="@color/colorWhite"
+                        app:srcCompat="@drawable/about24dp"
+                        tools:ignore="VectorDrawableCompat"
+                        />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:padding="2dp"
+                        android:text="About"
+                        android:gravity="center"
+                        android:background="@color/colorPinkRoseDark"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/textSmall"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--End Third Row -->
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

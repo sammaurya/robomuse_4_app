@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/android_15/android_15.iml" filepath="$PROJECT_DIR$/android_15/android_15.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraries/libraries.iml" filepath="$PROJECT_DIR$/libraries/libraries.iml" />
+      <module fileurl="file://$PROJECT_DIR$/robomuse/robomuse.iml" filepath="$PROJECT_DIR$/robomuse/robomuse.iml" />
+      <module fileurl="file://$PROJECT_DIR$/robomuse_app.iml" filepath="$PROJECT_DIR$/robomuse_app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraries/rosandroid-core/rosandroid-core.iml" filepath="$PROJECT_DIR$/libraries/rosandroid-core/rosandroid-core.iml" />
+    </modules>
+  </component>
+</project>

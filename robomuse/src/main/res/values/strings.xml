@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">RoboMuse 4.0</string>
+    <string name="guide">Coming soon</string>
+    <string name="about">
+        RoboMuse since its inception in 2008 at IIT Delhi under the aegis of Prof S. K. Saha
+        has undergone a lot of incremental changes in design and capabilities. The concept of
+        RoboMuse was inspired from various competitions held under the umbrella of RoboCon and
+        a need was felt to design and develop a mobile robot platform which can be standardized
+        for a typical industrial payload or as a research platform which could perform a variety
+        of tasks that can be built into it incrementally over the years. While there have been 5
+        versions of RoboMuse there has been a lack of standardization in the design of the RoboMuse.
+        Thus, the current available research platforms and industry trends were studied in order to
+        gauge the features of a research platform and standard specifications and requirements were
+        obtained.
+        Since, the currently available RoboMuse platforms had to be utilized for future work,
+        simulated analysis was carried out in ANSYS on the available RoboMuse platforms namely
+        RoboMuse 3XT and RoboMuse 4 to determine the structural integrity and thus the critical
+        parts were identified and necessary recommendations for design change for taking the
+        increased payload were made. A study to change in drive specifications in order to increase
+        the payload carrying capacity of the mobile robot was also carried out which needed change
+        in the drive components. The functioning of differential steering system and robot kinematics
+        was studied in order to understand the various actions performed by the mobile robot. ROS
+        architecture was studied extensively and it was used in running the robot and performing
+        experimentation. The actual running of RoboMuse 4 was performed by using various different
+        approaches to provide velocity and positional commands to the RoboMuse. There were no
+        available International standard for the testing of the mobile robot. Hence, the test
+        methods had to be developed for the measurement of mechanical performance parameters. Live
+        experimentation is essential in order to determine the performance parameters such as
+        repeatability in various tasks, obstacle parameters etc. under real time testing. A number
+        of experimentations were thus performed to determine these parameters. It was also possible
+        to improve the performance parameters of the RoboMuse significantly by reducing the systematic
+        errors by UMB benchmark test. The use of Gazebo as a tool for simulation was made in order
+        to simulate the RoboMuse in a simulated environment and various methods of running the
+        RoboMuse in simulated environment were demonstrated. Subsequently, simulated applications
+        such as surveillance and endurance test were developed on RoboMuse out of which the former
+        has been tested and demonstrated successfully in real time. Thus, the experiments may be
+        developed, tested and improved in simulated environment first and then be tested in real-time.
+    </string>
+
+</resources>
