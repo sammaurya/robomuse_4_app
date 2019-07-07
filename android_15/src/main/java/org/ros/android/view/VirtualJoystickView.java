@@ -245,18 +245,18 @@ public class VirtualJoystickView extends RelativeLayout implements AnimationList
   public VirtualJoystickView(Context context) {
     super(context);
     initVirtualJoystick(context);
-    topicName = "~cmd_vel";
+    topicName = "robomuse/cmd_vel";
   }
 
   public VirtualJoystickView(Context context, AttributeSet attrs) {
     super(context, attrs);
     initVirtualJoystick(context);
-    topicName = "~cmd_vel";
+    topicName = "robomuse/cmd_vel";
   }
 
   public VirtualJoystickView(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
-    topicName = "~cmd_vel";
+    topicName = "robomuse/cmd_vel";
   }
 
   /**
@@ -366,7 +366,7 @@ public class VirtualJoystickView extends RelativeLayout implements AnimationList
     case MotionEvent.ACTION_POINTER_UP:
     case MotionEvent.ACTION_UP: {
       // Check if the contact that initiated the interaction is up.
-      if ((action & MotionEvent.ACTION_POINTER_ID_MASK) >> MotionEvent.ACTION_POINTER_ID_SHIFT == pointerId) {
+      if ((action & MotionEvent.ACTION_POINTER_INDEX_MASK) >> MotionEvent.ACTION_POINTER_INDEX_MASK == pointerId) {
         onContactUp();
       }
       break;
@@ -802,6 +802,13 @@ public class VirtualJoystickView extends RelativeLayout implements AnimationList
    */
   private void publishVelocity(double linearVelocityX, double linearVelocityY,
       double angularVelocityZ) {
+      //TODO sammaurya decreaseing teleop velocity
+      //Decrease velocity by 20%
+      linearVelocityX = linearVelocityX * 0.20f;
+      linearVelocityY = linearVelocityY * 0.20f;
+      angularVelocityZ = angularVelocityZ * 0.40f;
+
+
     currentVelocityCommand.getLinear().setX(linearVelocityX);
     currentVelocityCommand.getLinear().setY(-linearVelocityY);
     currentVelocityCommand.getLinear().setZ(0);

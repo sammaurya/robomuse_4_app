@@ -16,9 +16,11 @@
 
 package org.ros.android.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.TextView;
+
 import org.ros.android.MessageCallable;
 import org.ros.message.MessageListener;
 import org.ros.namespace.GraphName;
@@ -30,7 +32,8 @@ import org.ros.node.topic.Subscriber;
 /**
  * @author damonkohler@google.com (Damon Kohler)
  */
-public class RosTextView<T> extends android.support.v7.widget.AppCompatTextView implements NodeMain {
+@SuppressLint("AppCompatCustomView")
+public class RosTextView<T> extends TextView implements NodeMain {
 
   private String topicName;
   private String messageType;

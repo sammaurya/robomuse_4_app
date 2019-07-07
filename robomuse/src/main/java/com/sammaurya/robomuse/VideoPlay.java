@@ -1,10 +1,11 @@
 package com.sammaurya.robomuse;
 
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.VideoView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class VideoPlay extends AppCompatActivity {
 

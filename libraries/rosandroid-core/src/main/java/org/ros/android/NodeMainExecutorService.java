@@ -16,33 +16,25 @@
 
 package org.ros.android;
 
-import com.google.common.base.Preconditions;
-
-import android.app.AlertDialog;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
+import android.annotation.SuppressLint;
 import android.app.Service;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiManager.WifiLock;
 import android.os.AsyncTask;
 import android.os.Binder;
-import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.PowerManager;
-import android.os.PowerManager.WakeLock;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
-import org.ros.RosCore;
 
+import androidx.appcompat.app.AlertDialog;
+
+import org.ros.RosCore;
 import org.ros.concurrent.ListenerGroup;
 import org.ros.concurrent.SignalRunnable;
 import org.ros.exception.RosRuntimeException;
@@ -80,7 +72,7 @@ public class NodeMainExecutorService extends Service implements NodeMainExecutor
   private final ListenerGroup<NodeMainExecutorServiceListener> listeners;
 
   private Handler handler;
-  private WakeLock wakeLock;
+  private PowerManager.WakeLock wakeLock;
   private WifiLock wifiLock;
   private RosCore rosCore;
   private URI masterUri;
@@ -110,9 +102,10 @@ public class NodeMainExecutorService extends Service implements NodeMainExecutor
   public void onCreate() {
     handler = new Handler();
     PowerManager powerManager = (PowerManager) getSystemService(POWER_SERVICE);
-    wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, TAG);
-    wakeLock.acquire();
-    int wifiLockType = WifiManager.WIFI_MODE_FULL;
+    wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, ":NodeMainExecutorService");
+    //WakeLock will be released after 10 minutes
+    wakeLock.acquire(10*60*1000L /*10 minutes*/);
+    int wifiLockType = WifiManager.WIFI_MODE_FULL_HIGH_PERF;
     try {
       wifiLockType = WifiManager.class.getField("WIFI_MODE_FULL_HIGH_PERF").getInt(null);
     } catch (Exception e) {
@@ -120,6 +113,7 @@ public class NodeMainExecutorService extends Service implements NodeMainExecutor
       Log.w(TAG, "Unable to acquire high performance wifi lock.");
     }
     WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+    assert wifiManager != null;
     wifiLock = wifiManager.createWifiLock(wifiLockType, TAG);
     wifiLock.acquire();
   }
@@ -215,16 +209,16 @@ public class NodeMainExecutorService extends Service implements NodeMainExecutor
     if (intent.getAction() == null) {
       return START_NOT_STICKY;
     }
-    if (intent.getAction().equals(ACTION_START)) {
-      Preconditions.checkArgument(intent.hasExtra(EXTRA_NOTIFICATION_TICKER));
-      Preconditions.checkArgument(intent.hasExtra(EXTRA_NOTIFICATION_TITLE));
-      Intent notificationIntent = new Intent(this, NodeMainExecutorService.class);
-      notificationIntent.setAction(NodeMainExecutorService.ACTION_SHUTDOWN);
-      PendingIntent pendingIntent = PendingIntent.getService(this, 0, notificationIntent, 0);
-      Notification notification = buildNotification(intent, pendingIntent);
-
-      startForeground(ONGOING_NOTIFICATION, notification);
-    }
+//    if (intent.getAction().equals(ACTION_START)) {
+//      Preconditions.checkArgument(intent.hasExtra(EXTRA_NOTIFICATION_TICKER));
+//      Preconditions.checkArgument(intent.hasExtra(EXTRA_NOTIFICATION_TITLE));
+//      Intent notificationIntent = new Intent(this, NodeMainExecutorService.class);
+//      notificationIntent.setAction(NodeMainExecutorService.ACTION_SHUTDOWN);
+//      PendingIntent pendingIntent = PendingIntent.getService(this, 0, notificationIntent, 0);
+//      Notification notification = buildNotification(intent, pendingIntent);
+//
+//      startForeground(ONGOING_NOTIFICATION, notification);
+//    }
     if (intent.getAction().equals(ACTION_SHUTDOWN)) {
       shutdown();
     }
@@ -266,7 +260,7 @@ public class NodeMainExecutorService extends Service implements NodeMainExecutor
    * @param isPrivate
    */
   public void startMaster(boolean isPrivate) {
-    AsyncTask<Boolean, Void, URI> task = new AsyncTask<Boolean, Void, URI>() {
+    @SuppressLint("StaticFieldLeak") AsyncTask<Boolean, Void, URI> task = new AsyncTask<Boolean, Void, URI>() {
       @Override
       protected URI doInBackground(Boolean[] params) {
         NodeMainExecutorService.this.startMasterBlocking(params[0]);
@@ -313,30 +307,30 @@ public class NodeMainExecutorService extends Service implements NodeMainExecutor
     });
   }
 
-  private Notification buildNotification(Intent intent, PendingIntent pendingIntent) {
-    Notification notification = null;
-    Notification.Builder builder = null;
-    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
-      NotificationChannel chan = new NotificationChannel(
-              NOTIFICATION_CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_NONE);
-      chan.setLightColor(Color.BLUE);
-      chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
-      NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-      assert manager != null;
-      manager.createNotificationChannel(chan);
-      builder = new Notification.Builder(this, NOTIFICATION_CHANNEL_ID);
-    } else {
-      builder = new Notification.Builder(this);
-    }
-    notification = builder.setContentIntent(pendingIntent)
-            .setOngoing(true)
-            .setSmallIcon(R.mipmap.icon)
-            .setTicker(intent.getStringExtra(EXTRA_NOTIFICATION_TICKER))
-            .setWhen(System.currentTimeMillis())
-            .setContentTitle(intent.getStringExtra(EXTRA_NOTIFICATION_TITLE))
-            .setAutoCancel(true)
-            .setContentText("Tap to shutdown.")
-            .build();
-    return notification;
-  }
+//  private Notification buildNotification(Intent intent, PendingIntent pendingIntent) {
+//    Notification notification = null;
+//    Notification.Builder builder = null;
+//    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
+//      NotificationChannel chan = new NotificationChannel(
+//              NOTIFICATION_CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_NONE);
+//      chan.setLightColor(Color.BLUE);
+//      chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+//      NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+//      assert manager != null;
+//      manager.createNotificationChannel(chan);
+//      builder = new Notification.Builder(this, NOTIFICATION_CHANNEL_ID);
+//    } else {
+//      builder = new Notification.Builder(this);
+//    }
+//    notification = builder.setContentIntent(pendingIntent)
+//            .setOngoing(true)
+//            .setSmallIcon(R.mipmap.icon)
+//            .setTicker(intent.getStringExtra(EXTRA_NOTIFICATION_TICKER))
+//            .setWhen(System.currentTimeMillis())
+//            .setContentTitle(intent.getStringExtra(EXTRA_NOTIFICATION_TITLE))
+//            .setAutoCancel(true)
+//            .setContentText("Tap to shutdown.")
+//            .build();
+//    return notification;
+//  }
 }

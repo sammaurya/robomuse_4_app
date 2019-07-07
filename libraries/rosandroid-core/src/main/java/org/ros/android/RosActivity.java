@@ -23,6 +23,8 @@ import android.content.ServiceConnection;
 import android.os.AsyncTask;
 import android.os.IBinder;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.common.base.Preconditions;
 
 import org.ros.address.InetAddressFactory;
@@ -38,7 +40,7 @@ import java.net.URISyntaxException;
 /**
  * @author damonkohler@google.com (Damon Kohler)
  */
-public abstract class RosActivity extends Activity {
+public abstract class RosActivity extends AppCompatActivity {
 
   protected static final int MASTER_CHOOSER_REQUEST_CODE = 0;
 
@@ -174,14 +176,14 @@ public abstract class RosActivity extends Activity {
 
   /**
    * Custom MasterChooser constructor.
-   * Use this constructor to specify which {@link Activity} should be started in place of {@link MasterChooser}.
+   * Use this constructor to specify which {@link AppCompatActivity} should be started in place of {@link MasterChooser}.
    * The specified activity shall return a result that can be handled by a custom callback.
    * See {@link #setOnActivityResultCallback(OnActivityResultCallback)} for more information about
    * how to handle custom request codes and results.
    * @param notificationTicker Title to use in Ticker notifications.
    * @param notificationTitle Title to use in notifications.
-   * @param activity {@link Activity} to launch instead of {@link MasterChooser}.
-   * @param requestCode Request identifier to start the given {@link Activity} for a result.
+   * @param activity {@link AppCompatActivity} to launch instead of {@link MasterChooser}.
+   * @param requestCode Request identifier to start the given {@link AppCompatActivity} for a result.
      */
   protected RosActivity(String notificationTicker, String notificationTitle, Class<?> activity, int requestCode) {
     this(notificationTicker, notificationTitle);

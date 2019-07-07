@@ -2,20 +2,46 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sammaurya.robomuse">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
     <application
+        android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".LiveFeed"
-            android:screenOrientation="landscape"/>
-        <activity android:name=".MasterChooser" />
-        <activity android:name=".Contact" />
-        <activity android:name=".Teleop" />
-        <activity android:name=".VideoPlay" />
-        <activity android:name=".About" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Opener">
+        <activity
+            android:name=".LiveFeed"
+            android:label="@string/liveFeed_activity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".RobotChooser"
+            android:label="@string/robot_chooser_activity" />
+        <activity
+            android:name=".Teleop"
+            android:label="@string/teleop_acticity" />
+
+        <activity
+            android:name=".VideoPlay"
+            android:label="@string/videoPlay_activity" />
+        <activity
+            android:name=".Contact"
+            android:label="@string/contact_activity" />
+        <activity
+            android:name=".About"
+            android:label="@string/about_activity" />
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/main_activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Opener"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

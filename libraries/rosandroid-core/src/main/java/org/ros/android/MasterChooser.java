@@ -16,9 +16,7 @@
 
 package org.ros.android;
 
-import com.google.common.base.Preconditions;
-
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,19 +25,22 @@ import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.Toast;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import org.ros.android.R;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.common.base.Preconditions;
+
 import org.ros.exception.RosRuntimeException;
 import org.ros.internal.node.client.MasterClient;
 import org.ros.internal.node.xmlrpc.XmlRpcTimeoutException;
@@ -60,9 +61,9 @@ import java.util.regex.Pattern;
 
 /**
  * Allows the user to configue a master {@link URI} then it returns that
- * {@link URI} to the calling {@link Activity}.
+ * {@link URI} to the calling {@link AppCompatActivity}.
  * <p>
- * When this {@link Activity} is started, the last used (or the default)
+ * When this {@link AppCompatActivity} is started, the last used (or the default)
  * {@link URI} is displayed to the user.
  * 
  * @author ethan.rublee@gmail.com (Ethan Rublee)
@@ -237,6 +238,7 @@ public class MasterChooser extends AppCompatActivity {
     this.moveTaskToBack(true);
   }
 
+  @SuppressLint("StaticFieldLeak")
   public void okButtonClicked(View unused) {
     String tmpURI = uriText.getText().toString();
 

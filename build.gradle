@@ -17,10 +17,13 @@ allprojects {
     repositories {
         jcenter()
         google()
+        mavenCentral()
+        mavenLocal()
         maven {
             name "rosjava-github"
             url "https://github.com/rosjava/rosjava_mvn_repo/raw/master"
-            }
+        }
         maven { url "https://maven.google.com" }
+        maven { url "https://jitpack.io" }
     }
 }

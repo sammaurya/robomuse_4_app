@@ -20,6 +20,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 import org.ros.android.MessageCallable;
 import org.ros.message.MessageListener;
 import org.ros.namespace.GraphName;
@@ -34,7 +36,7 @@ import org.ros.node.topic.Subscriber;
  * @author ethan.rublee@gmail.com (Ethan Rublee)
  * @author damonkohler@google.com (Damon Kohler)
  */
-public class RosImageView<T> extends android.support.v7.widget.AppCompatImageView implements NodeMain {
+public class RosImageView<T> extends AppCompatImageView implements NodeMain {
 
   private String topicName;
   private String messageType;

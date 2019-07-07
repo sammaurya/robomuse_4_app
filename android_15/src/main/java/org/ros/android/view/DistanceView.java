@@ -23,16 +23,18 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+
 import org.ros.message.MessageListener;
 import org.ros.namespace.GraphName;
 import org.ros.node.ConnectedNode;
 import org.ros.node.Node;
 import org.ros.node.NodeMain;
 import org.ros.node.topic.Subscriber;
-import sensor_msgs.LaserScan;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import sensor_msgs.LaserScan;
 
 /**
  * An OpenGL view that displayed data from a laser scanner (or similar sensors
@@ -202,7 +204,7 @@ public class DistanceView extends GLSurfaceView implements OnTouchListener, Node
   @Override
   public boolean onTouch(View v, MotionEvent event) {
     final int action = event.getAction();
-    switch (action & MotionEvent.ACTION_MASK) {
+    switch (action & MotionEvent.ACTION_POINTER_INDEX_MASK) {
       case MotionEvent.ACTION_MOVE: {
         // Only zoom when there are exactly 2 contacts on the view.
         if (event.getPointerCount() == 2) {
@@ -228,7 +230,7 @@ public class DistanceView extends GLSurfaceView implements OnTouchListener, Node
       }
       // When the second contact touches the screen initialize contactDistance
       // for the immediate round of interaction.
-      case MotionEvent.ACTION_POINTER_1_DOWN: {
+      case MotionEvent.ACTION_POINTER_DOWN: {
         contactDistance =
             calculateDistance(event.getX(0), event.getY(0), event.getX(1), event.getY(1));
         break;

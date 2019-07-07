@@ -20,7 +20,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
-import android.preference.PreferenceManager;
+
+import androidx.preference.PreferenceManager;
 
 import java.util.List;
 

@@ -35,8 +35,7 @@ import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.Button;
 import android.widget.TableLayout;
-import diagnostic_msgs.DiagnosticArray;
-import diagnostic_msgs.DiagnosticStatus;
+
 import org.ros.android.android_15.R;
 import org.ros.message.MessageListener;
 import org.ros.namespace.GraphName;
@@ -46,6 +45,9 @@ import org.ros.node.NodeMain;
 import org.ros.node.topic.Subscriber;
 
 import java.util.List;
+
+import diagnostic_msgs.DiagnosticArray;
+import diagnostic_msgs.DiagnosticStatus;
 
 /**
  * @author damonkohler@google.com (Damon Kohler)
@@ -77,10 +79,11 @@ public class DiagnosticsArrayView extends TableLayout implements NodeMain {
 
   private void init() {
     Resources resources = getResources();
-    errorDrawable = resources.getDrawable(R.drawable.error);
-    warningDrawable = resources.getDrawable(R.drawable.warn);
-    okDrawable = resources.getDrawable(R.drawable.ok);
-    staleDrawable = resources.getDrawable(R.drawable.stale);
+    //Todo sammaurya getDrawable(id) was deprecated in API22
+    errorDrawable = resources.getDrawable(R.drawable.error,null);
+    warningDrawable = resources.getDrawable(R.drawable.warn,null);
+    okDrawable = resources.getDrawable(R.drawable.ok,null);
+    staleDrawable = resources.getDrawable(R.drawable.stale,null);
   }
 
   @Override

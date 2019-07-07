@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#dd3333</color>
-    <color name="colorPrimaryDark">#d11616</color>
-    <color name="colorAccent">#ff4081</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary1">#dd3333</color>
+    <color name="colorPrimaryDark1">#d11616</color>
+    <color name="colorAccent1">#ff4081</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorGrapeFruit">#ED5565</color>
     <color name="colorGrapeFruitDark">#DA4453</color>

@@ -16,16 +16,17 @@
 
 package org.ros.android.view.visualization;
 
-import com.google.common.base.Preconditions;
-import com.google.common.collect.Lists;
-
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 
 import org.ros.android.RosActivity;
 import org.ros.android.view.visualization.layer.Layer;
@@ -66,7 +67,7 @@ public class VisualizationView extends GLSurfaceView implements NodeMain {
   }
 
   /**
-   * Must be called in {@link Activity#onCreate(Bundle)}.
+   * Must be called in {@link AppCompatActivity#onCreate(Bundle)}.
    *
    * @param layers
    */

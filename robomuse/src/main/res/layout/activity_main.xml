@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/app_bar_main">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -13,7 +15,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -236,7 +238,7 @@
                 android:weightSum="3">
 
                 <LinearLayout
-                    android:onClick="masterChooser"
+                    android:onClick="robotChooser"
                     android:layout_width="0dp"
                     android:layout_height="120dp"
                     android:layout_weight="1"
@@ -257,7 +259,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginTop="20dp"
                         android:padding="2dp"
-                        android:text="Master"
+                        android:text="Robots"
                         android:gravity="center"
                         android:background="@color/colorMintDark"
                         android:textColor="@color/colorWhite"

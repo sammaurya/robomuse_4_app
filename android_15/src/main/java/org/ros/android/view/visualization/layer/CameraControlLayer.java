@@ -16,12 +16,13 @@
 
 package org.ros.android.view.visualization.layer;
 
-import com.google.common.base.Preconditions;
-
-import android.support.v4.view.GestureDetectorCompat;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
+
+import androidx.core.view.GestureDetectorCompat;
+
+import com.google.common.base.Preconditions;
 
 import org.ros.android.view.visualization.RotateGestureDetector;
 import org.ros.android.view.visualization.VisualizationView;

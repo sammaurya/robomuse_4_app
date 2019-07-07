@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/visualizationSwitch"
+        android:title="Image/Map"
+        app:actionLayout="@layout/switch_item"
+        android:checkable="true"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/imageViewProperties"
+        android:title="ImageView Properties">
+        <menu>
+            <group
+                android:checkableBehavior="all">
+                <item
+                    android:id="@+id/monoImage"
+                    android:title="Mono"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/colorImage"
+                    android:title="Color"
+                    app:showAsAction="never" />
+                <item
+                    android:id="@+id/compressedImage"
+                    android:title="Color Compressed"
+                    app:showAsAction="never" />
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/mapViewProperties"
+        android:title="MapView Properties">
+        <menu>
+            <group
+                android:checkableBehavior="all">
+                <item
+                    android:id="@+id/laserScan"
+                    android:title="LaserScanLayer" />
+                <item
+                    android:id="@+id/cameraControl"
+                    android:title="CameraControlLayer" />
+                <item
+                    android:id="@+id/robotBase"
+                    android:title="RobotLayer" />
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/virtual_joystick"
+        android:title="Joystick Hide"
+        app:showAsAction="never"
+        android:checkable="true" />
+    <item
+        android:id="@+id/virtual_joystick_snap"
+        android:title="Auto Snapping"
+        app:showAsAction="never"
+        android:checkable="true"/>
+</menu>

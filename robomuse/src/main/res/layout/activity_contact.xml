@@ -6,120 +6,77 @@
     android:layout_height="match_parent"
     tools:context=".Contact">
 
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorBitterSweet"
-            android:paddingLeft="20dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:text="Contact"
-            android:textColor="@color/colorWhite"
-            android:textSize="24sp" />
-    </LinearLayout>
-
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:paddingBottom="16dp"
-        android:paddingTop="8dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/marginDefault"
+        android:layout_marginBottom="@dimen/marginDefault"
+        android:layout_marginRight="@dimen/marginDefault"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/paddingLarge"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:text="Administrative Support"
+                android:text="@string/contact_heading_admin"
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorBitterSweet"
-                android:textSize="24sp"
+                android:textSize="@dimen/textMedium"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:paddingLeft="8dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:text="Dr. Prof. S.K. Saha\nMechanical Department\nIIT DELHI\nsaha@mech.iitd.ac.in\nsahaiitd@gmail.com"
-                android:textSize="20sp" />
+                android:layout_marginTop="@dimen/marginDefault"
+                android:text="@string/contact_saha_sir"
+                android:textSize="@dimen/textSmall" />
 
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:paddingLeft="8dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:text="Prof. Vinay Gupta\nMechanical Department\nIEC College of Engineering &amp; Technology\nvinaygupta.me@ieccollege.com"
-                android:textSize="20sp" />
+                android:layout_marginTop="@dimen/marginDefault"
+                android:text="@string/contact_vinay_sir"
+                android:textSize="@dimen/textSmall" />
 
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:paddingLeft="8dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:text="Technical Support"
+                android:layout_marginTop="@dimen/marginMedium"
+                android:text="@string/contact_heading_technical"
                 android:textAlignment="viewStart"
                 android:textColor="@color/colorBitterSweet"
-                android:textSize="24sp"
+                android:textSize="@dimen/textMedium"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textView14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:paddingLeft="8dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:text="Sanjay Maurya\nComputer Science &amp; Engineering\nIEC College of Engineering &amp; Technology\nsammaurya196@gmail.com"
-                android:textSize="20sp" />
+                android:layout_marginTop="@dimen/marginDefault"
+                android:text="@string/contact_sanjay"
+                android:textSize="@dimen/textSmall" />
 
             <TextView
                 android:id="@+id/textView15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:paddingLeft="8dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
-                android:text="Mohd. Ahmad\nMechanical Engineering\nIEC College of Engineering &amp; Technology\nmohdahmad117@gmail.com"
-                android:textSize="20sp" />
+                android:layout_marginTop="@dimen/marginDefault"
+                android:text="@string/contact_ahmad"
+                android:textSize="@dimen/textSmall" />
 
         </LinearLayout>
     </ScrollView>
