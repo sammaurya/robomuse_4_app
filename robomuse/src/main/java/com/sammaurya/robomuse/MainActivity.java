@@ -2,12 +2,12 @@ package com.sammaurya.robomuse;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -15,12 +15,77 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.sammaurya.robomuse.Core.ControlMode;
+import com.sammaurya.robomuse.Core.RobotController;
 import com.sammaurya.robomuse.Core.RobotInfo;
+import com.sammaurya.robomuse.Core.WarningSystem;
+import com.sammaurya.robomuse.Fragments.HUDFragment;
+import com.sammaurya.robomuse.Fragments.VirtualJoystickFragment;
+
+import org.ros.android.AppCompatRosActivity;
+import org.ros.node.NodeConfiguration;
+import org.ros.node.NodeMainExecutor;
 
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
+public class MainActivity extends AppCompatRosActivity implements NavigationView.OnNavigationItemSelectedListener  {
 
+    /** Notification ticker for the App */
+    public static final String NOTIFICATION_TICKER = "ROS Control";
+    /** Notification title for the App */
+    public static final String NOTIFICATION_TITLE = "ROS Control";
+
+    /** The RobotInfo of the connected Robot */
     public static RobotInfo ROBOT_INFO;
+
+    // The RobotController for managing the connection to the Robot
+    private static RobotController controller;
+    // Fragment for the Joystick
+    private VirtualJoystickFragment joystickFragment;
+    // Fragment for the HUD
+    private HUDFragment hudFragment;
+
+    // The WarningSystem used for detecting imminent collisions
+    private WarningSystem warningSystem;
+
+    // NodeMainExecutor encapsulating the Robot's connection
+    private NodeMainExecutor nodeMainExecutor;
+    // The NodeConfiguration for the connection
+    private NodeConfiguration nodeConfiguration;
+
+
+    // Log tag String
+    private static final String TAG = "ControlApp";
+
+    // The saved instance state
+    private Bundle savedInstanceState;
+
+    /**
+     * Default Constructor.
+     */
+   static  {
+        if(ROBOT_INFO == null){
+            //TODO alert user to select a robot from RobotChooser Activity
+//            Toast.makeText(this, "Robot is not Selected", Toast.LENGTH_LONG).show();
+            ROBOT_INFO = new RobotInfo();
+            ROBOT_INFO.setMasterUri("http://192.168.43.143:11311");
+
+
+        }else if(ROBOT_INFO != null){
+            //ROBOT_INFO.save(editor);
+        }
+    }
+    public static MainActivity instance;
+    public static MainActivity getInstance(){
+       if (instance == null){
+           instance = new MainActivity();
+       }
+       return instance;
+
+    }
+    public MainActivity() {
+        super(NOTIFICATION_TICKER, NOTIFICATION_TITLE, ROBOT_INFO.getUri());
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +111,88 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
+
+        // Create the RobotController
+        controller = new RobotController(this);
+
+        // Hud fragment
+        hudFragment = (HUDFragment) getSupportFragmentManager().findFragmentById(R.id.hud_fragment);
+        // Find the Joystick fragment
+        joystickFragment = (VirtualJoystickFragment) getSupportFragmentManager().findFragmentById(R.id.joystick_fragment);
+
+        this.savedInstanceState = savedInstanceState;
+
+        if (savedInstanceState != null) {
+            // Load the controller
+            controller.load(savedInstanceState);
+        }
+
     }
+
+    @Override
+    protected void init(NodeMainExecutor nodeMainExecutor) {
+
+        try {
+            java.net.Socket socket = new java.net.Socket(getMasterUri().getHost(), getMasterUri().getPort());
+            java.net.InetAddress local_network_address = socket.getLocalAddress();
+            socket.close();
+
+            this.nodeMainExecutor = nodeMainExecutor;
+            this.nodeConfiguration =
+                    NodeConfiguration.newPublic(local_network_address.getHostAddress(), getMasterUri());
+
+            //controller.setTopicName(PreferenceManager.getDefaultSharedPreferences(this).getString("edittext_joystick_topic", getString(R.string.joy_topic)));
+            controller.initialize(nodeMainExecutor, nodeConfiguration);
+
+            // Add the HUDFragment to the RobotController's odometry listener
+            controller.addOdometryListener(hudFragment);
+
+
+        } catch (Exception e) {
+            // Socket problem
+            Log.e(TAG, "socket error trying to get networking information from the master uri", e);
+        }
+    }
+
+    /**
+     * @return The RobotController
+     */
+    public RobotController getRobotController() {
+        return controller;
+    }
+
+    /**
+     * @return the Robot's current ControlMode
+     */
+    public ControlMode getControlMode() {
+        return joystickFragment.getControlMode();
+    }
+
+    /**
+     * @return The HUDFragment
+     */
+    public HUDFragment getHUDFragment() {
+        return hudFragment;
+    }
+
+    /**
+     * @return The WarningSystem
+     */
+    public WarningSystem getWarningSystem() {
+        return warningSystem;
+    }
+
+    /**
+     * Called when a collision is imminent from the WarningSystem.
+     */
+    public void collisionWarning() {
+//        Log.d(TAG, "Collision Warning!");
+
+        hudFragment.warn();
+    }
+
+
+
 
     @Override
     public void onBackPressed() {
@@ -141,5 +287,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent robotActivity = new Intent(this, RobotChooser.class);
         startActivity(robotActivity);
     }
+
 
 }

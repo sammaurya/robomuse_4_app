@@ -20,7 +20,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 
 import org.ros.address.InetAddressFactory;
-import org.ros.android.BitmapFromImage;
+import org.ros.android.BitmapFromCompressedImage;
 import org.ros.android.RosActivity;
 import org.ros.android.view.RosImageView;
 import org.ros.node.NodeConfiguration;
@@ -32,7 +32,7 @@ import org.ros.node.NodeMainExecutor;
  */
 public class LiveFeed extends RosActivity {
 
-    private RosImageView<sensor_msgs.Image> image;
+    private RosImageView<sensor_msgs.CompressedImage> image;
 
     public LiveFeed() {
         super("LiveFeed","LiveFeed");
@@ -44,9 +44,9 @@ public class LiveFeed extends RosActivity {
         setContentView(R.layout.activity_live_feed);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         image = findViewById(R.id.image);
-        image.setTopicName("/camera/rgb/image_color");
-        image.setMessageType(sensor_msgs.Image._TYPE);
-        image.setMessageToBitmapCallable(new BitmapFromImage());
+        image.setTopicName("/camera/rgb/image_color/compressed");
+        image.setMessageType(sensor_msgs.CompressedImage._TYPE);
+        image.setMessageToBitmapCallable(new BitmapFromCompressedImage());
     }
 
 

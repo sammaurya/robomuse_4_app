@@ -40,6 +40,8 @@ dependencies {
 //    implementation project(':libraries:rosandroid-core')
     implementation project(path: ':android_15')
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation "androidx.legacy:legacy-preference-v14:1.0.0"
     implementation "androidx.preference:preference:1.1.0-rc01"
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'org.osmdroid:osmdroid-android:5.2@aar'
 }

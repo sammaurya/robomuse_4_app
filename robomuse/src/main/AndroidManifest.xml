@@ -24,7 +24,8 @@
             android:label="@string/robot_chooser_activity" />
         <activity
             android:name=".Teleop"
-            android:label="@string/teleop_acticity" />
+            android:label="@string/teleop_acticity"
+            android:parentActivityName=".MainActivity"/>
 
         <activity
             android:name=".VideoPlay"

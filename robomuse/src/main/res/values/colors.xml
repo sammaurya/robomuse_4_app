@@ -26,6 +26,11 @@
     <color name="colorPinkRose">#EC87C0</color>
     <color name="colorPinkRoseDark">#D770AD</color>
 
+    <!-- Colors for the emergency stop button -->
+    <color name="emergency_stop_red">@android:color/holo_red_dark</color>
+    <color name="emergency_stop_green">#FF00CC00</color>
+    <color name="emergency_stop_gray">#FFAAAAAA</color>
+
 
 
 

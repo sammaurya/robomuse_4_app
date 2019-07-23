@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <fragment
+        android:id="@+id/hud_fragment"
+        android:name="com.sammaurya.robomuse.Fragments.HUDFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="64sp"
+        tools:layout="@layout/fragment_hud" />
 
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true">
+        android:layout_below="@id/hud_fragment"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp">
+
     </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/joystickFragment"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+    <fragment
+        android:id="@+id/joystick_fragment"
+        android:name="com.sammaurya.robomuse.Fragments.VirtualJoystickFragment"
+        android:layout_width="150dip"
+        android:layout_height="150dip"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" >
-
-    </FrameLayout>
+        tools:layout="@layout/fragment_virtual_joystick_view" />
 
 </RelativeLayout>
